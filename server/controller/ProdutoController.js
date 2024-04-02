@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import ProdutoModel from "../models/ProdutoModel.js";
 
 export default {
@@ -20,6 +19,12 @@ export default {
         res.json(produto)
     },
 
+    async update(req, res) {
+        const updateProduto = await ProdutoModel.findByIdAndUpdate(req.params.id, req.body)
+        updateProduto.save()
+        res.json(updateProduto)
+    },
+
     async delete(req, res) {
         const produto = await ProdutoModel.findById(req.params.id);
         if (!produto) {
@@ -30,7 +35,7 @@ export default {
     },
 
     async random(req, res) {
-        const produto = await ProdutoModel.aggregate([{$sample: {size: 1}}])
+        const produto = await ProdutoModel.aggregate([{ $sample: {size: 1 }}])
         res.json(produto)
     }
 }
