@@ -33,7 +33,7 @@ const GetProdutos = () => {
   return (
     <div style={{ marginTop: 20, padding: 30 }}>
       {/* {totalProdutos === 0 ? () => {<div>A</div>} : null} */}
-      <div className="absolute bottom-8 right-12">
+      <div className="fixed bottom-8 right-12">
         <Fab color="primary" aria-label="Sacola">
           <ShoppingBag />
         </Fab>
@@ -46,14 +46,14 @@ const GetProdutos = () => {
       <Grid container spacing={15} justify="center">
         {produtos.map(produto => (
           <Grid item key={produto._id}>
-            <Card>
-              <CardActionArea>
-                <CardMedia component="img" alt={produto.name} height="140" image="https://static.itdg.com.br/images/360-240/21fd76be3b29c3290859eda5220e0e32/323683-original.jpg" title={produto.name} />
+            <Card className="max-w-[360px]">
+              <>
+                <CardMedia component="img" alt={produto.name} height="140" image={produto.image} title={produto.name} className="max-h-[240px]" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">{produto.name}</Typography>
                   <Typography component="p">{produto.description}</Typography>
                 </CardContent>
-              </CardActionArea>
+              </>
               <CardActions>
                 <div className="flex justify-between w-full">
                   <div>

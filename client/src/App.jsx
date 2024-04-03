@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "./theme/CreateTheme";
 import NavBar from "./components/NavBar"
 import GetProdutos from "./components/GetProdutos"
+import CreateProduto from "./components/CreateProduto";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <div>
           <Routes>
             <Route exact path="/" Component={GetProdutos} />
+            <Route path="/createProduto" Component={CreateProduto} />
           </Routes>
         </div>
       </div>

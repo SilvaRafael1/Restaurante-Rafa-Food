@@ -13,6 +13,10 @@ const ProdutoSchema = new mongoose.Schema({
         type: String,
         required: [true, "Por favor informe um preço"]
     },
+    image: {
+        type: String,
+        required: [true, "Por favor informe uma URL de imagem"]
+    },
     date: {
         type: Date,
         default: Date.now
