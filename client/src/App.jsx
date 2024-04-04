@@ -3,8 +3,13 @@ import { AppBar, Toolbar, Typography } from "@mui/material"
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "./theme/CreateTheme";
 import NavBar from "./components/NavBar"
+
+// Components
 import GetProdutos from "./components/GetProdutos"
 import CreateProduto from "./components/CreateProduto";
+import UpdateProduto from "./components/UpdateProduto";
+import DeleteProduto from "./components/DeleteProduto";
+import GetPedidos from "./components/GetPedidos";
 
 function App() {
   return (
@@ -25,6 +30,9 @@ function App() {
           <Routes>
             <Route exact path="/" Component={GetProdutos} />
             <Route path="/createProduto" Component={CreateProduto} />
+            <Route path="/updateProduto/:id" Component={UpdateProduto} />
+            <Route path="/deleteProduto/:id" Component={DeleteProduto} />
+            <Route path="/getPedidos" Component={GetPedidos} />
           </Routes>
         </div>
       </div>

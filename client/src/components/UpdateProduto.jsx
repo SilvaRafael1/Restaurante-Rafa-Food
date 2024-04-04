@@ -3,33 +3,38 @@ import * as Yup from "yup"
 import client from "../api/Api"
 import { Typography } from "@mui/material"
 import "../css/Form.css"
+import { useParams } from "react-router-dom"
+import GetOneProduto from "../hooks/GetOneProduto"
 
-function CreateProduto() {
-  const handleSubmit = (data) => client.post("/produtos", data).then(() => {
+function UpdateProduto() {
+  const { id } = useParams()
+  const { produto } = GetOneProduto(id)
+  
+  const handleSubmit = (data) => client.put(`/produtos/${id}`, data).then(() => {
     console.log("Produto criado com sucesso: ", data);
     alert("Produto criado com sucesso! Para mais detalhes consulte o log")
     window.location.href = "http://localhost:5173";
   })
-
+  
   const validationSchema = Yup.object().shape({
     name: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
     description: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
     price: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
     image: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
   })
-
+  
   const initialValues = {
-    name: "",
-    description: "",
-    price: "",
-    image: "",
+    name: produto.name,
+    description: produto.description,
+    price: produto.price,
+    image: produto.image,
   }
-
+  
   return (
     <div className="form-area">
       <div className="form">
         <Typography variant="h4">
-          Formulário de Criação de Produto
+          Formulário de Edição de Produto
         </Typography>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ errors, touched, resetForm }) => (
@@ -66,4 +71,4 @@ function CreateProduto() {
   )
 }
 
-export default CreateProduto;
+export default UpdateProduto;
