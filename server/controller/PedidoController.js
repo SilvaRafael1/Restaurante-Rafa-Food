@@ -39,7 +39,6 @@ export default {
 
   async create(req, res) {
     const { produtos } = req.body;
-    console.log(produtos)
     const pedido = await PedidoModel.create(req.body);
     res.json(pedido)
   }
