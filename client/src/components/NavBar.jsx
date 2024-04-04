@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { Home, Add, ShoppingBagOutlined } from "@mui/icons-material";
+import { Home, Add, ShoppingBagOutlined, Shuffle } from "@mui/icons-material";
 import "../css/NavLinkStyle.css";
 
 function NavBar() {
@@ -28,6 +28,14 @@ function NavBar() {
             <NavLink to={"/getPedidos"} className="nav-link">
               <ShoppingBagOutlined />
               Pedidos
+            </NavLink>
+          </Typography>
+        </ListItemText>
+        <ListItemText inset>
+          <Typography color="inherit" variant="h6">
+            <NavLink to={"/produtos/random"} className="nav-link">
+              <Shuffle />
+              Produto Aleatório
             </NavLink>
           </Typography>
         </ListItemText>
