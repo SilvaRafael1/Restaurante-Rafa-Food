@@ -8,7 +8,10 @@ import GetOneProduto from "../hooks/GetOneProduto"
 
 function UpdateProduto() {
   const { id } = useParams()
-  const { produto } = GetOneProduto(id)
+  const { produto, loading, error } = GetOneProduto(id)
+
+  if (loading) return <div>Carregando...</div>;
+  if (error) return <div>{error}</div>;
   
   const handleSubmit = (data) => client.put(`/produtos/${id}`, data).then(() => {
     console.log("Produto criado com sucesso: ", data);
@@ -22,7 +25,7 @@ function UpdateProduto() {
     price: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
     image: Yup.string("Este campo deve ser preenchido com texto").required("Este campo é obrigatório"),
   })
-  
+
   const initialValues = {
     name: produto.name,
     description: produto.description,
