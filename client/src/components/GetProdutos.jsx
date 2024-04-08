@@ -33,9 +33,11 @@ const GetProdutos = () => {
       <div style={{ marginTop: 20, padding: 30 }}>
         {/* {totalProdutos === 0 ? () => {<div>A</div>} : null} */}
         <div className="fixed bottom-8 right-12">
-          <Fab color="primary" aria-label="Sacola">
-            <ShoppingBag />
-          </Fab>
+          <NavLink to={"/createPedido"} state={{ produtos: sacola }}>
+            <Fab color="primary" aria-label="Sacola">
+              <ShoppingBag />
+            </Fab>
+          </NavLink>
 
           <Fab color="secondary" aria-label="Quantidade" size="small" style={{ position: "absolute", left: "35px", bottom: "25px" }}>
             {totalProdutos}
@@ -62,8 +64,6 @@ const GetProdutos = () => {
                         novaQuantidade++
                         setTotalProdutos(novaQuantidade)
                         sacola.push(produto._id)
-                        console.log(sacola)
-                        console.log(produto._id)
                       }}>
                         Adicionar
                       </Button>

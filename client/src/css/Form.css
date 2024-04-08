@@ -16,13 +16,13 @@
   margin: 20px;
 }
 
-#name, #description, #price, #image {
+#name, #description, #price, #image, #endereco {
   border: none;
   border-bottom: 1px solid black;
   width: 100%;
 }
 
-#name:focus, #description:focus, #price:focus, #image:focus {
+#name:focus, #description:focus, #price:focus, #image:focus, #endereco:focus {
   border: none;
   border-bottom: 1px solid black;
 }

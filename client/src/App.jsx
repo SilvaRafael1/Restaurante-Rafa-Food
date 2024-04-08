@@ -11,6 +11,7 @@ import UpdateProduto from "./components/UpdateProduto";
 import DeleteProduto from "./components/DeleteProduto";
 import GetPedidos from "./components/GetPedidos";
 import GetRandom from "./components/GetRandom";
+import CreatePedido from "./components/CreatePedido";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/deleteProduto/:id" Component={DeleteProduto} />
             <Route path="/getPedidos" Component={GetPedidos} />
             <Route path="/produtos/random" Component={GetRandom} />
+            <Route path="/createPedido" Component={CreatePedido} />
           </Routes>
         </div>
       </div>
