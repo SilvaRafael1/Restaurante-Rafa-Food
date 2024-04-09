@@ -49,11 +49,11 @@ const GetProdutos = () => {
             <Grid item key={produto._id}>
               <Card className="max-w-[360px]">
                 <>
-                  <CardMedia component="img" alt={produto.name} height="140" image={produto.image} title={produto.name} className="max-h-[240px]" />
+                  <CardMedia component="img" alt={produto.name} height="140" image={produto.image} title={produto.name} className="h-[240px]" />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">{produto.name}</Typography>
                     <Typography component="p">{produto.description}</Typography>
-                    <Typography component="p"><b>Preço: </b>{produto.price}</Typography>
+                    <Typography component="p"><b>Preço: </b>R${produto.price}</Typography>
                   </CardContent>
                 </>
                 <CardActions>
