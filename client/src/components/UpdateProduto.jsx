@@ -14,8 +14,8 @@ function UpdateProduto() {
   if (error) return <div>{error}</div>;
   
   const handleSubmit = (data) => client.put(`/produtos/${id}`, data).then(() => {
-    console.log("Produto criado com sucesso: ", data);
-    alert("Produto criado com sucesso! Para mais detalhes consulte o log")
+    console.log("Produto editado com sucesso: ", data);
+    alert("Produto editado com sucesso! Para mais detalhes consulte o log")
     window.location.href = "http://localhost:5173";
   })
   

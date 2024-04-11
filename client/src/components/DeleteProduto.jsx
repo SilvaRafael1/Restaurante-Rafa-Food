@@ -30,11 +30,11 @@ function DeleteProduto({ id }) {
     const handleDelete = async () => {
         try {
             await client.delete(`/produtos/${id}`)
-            console.log(`Livro com o ID ${id} deletado com sucesso!`)
-            alert(`Livro com o ID ${id} deletado com sucesso!`)
+            console.log(`Produto com o ID ${id} deletado com sucesso!`)
+            alert(`Produto com o ID ${id} deletado com sucesso!`)
             window.location.href = "http://localhost:5173";
         } catch (err) {
-            console.error('Erro ao deletar livro: ', err)
+            console.error('Erro ao deletar produto: ', err)
         }
     }
 
