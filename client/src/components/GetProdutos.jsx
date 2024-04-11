@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "../theme/CreateTheme";
 import client from "../api/Api";
 import { NavLink } from "react-router-dom";
+import DeleteProduto from "./DeleteProduto";
 
 const GetProdutos = () => {
   const [produtos, setProdutos] = useState([]);
@@ -31,7 +32,6 @@ const GetProdutos = () => {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <div style={{ marginTop: 20, padding: 30 }}>
-        {/* {totalProdutos === 0 ? () => {<div>A</div>} : null} */}
         <div className="fixed bottom-8 right-12">
           <NavLink to={"/createPedido"} state={{ produtos: sacola }}>
             <Fab color="primary" aria-label="Sacola">
@@ -72,9 +72,10 @@ const GetProdutos = () => {
                       <NavLink to={"/updateProduto/" + produto._id}>
                         <Button size="small" color="primary">Editar</Button>
                       </NavLink>
-                      <NavLink to={"/deleteProduto/" + produto._id}>
+                      {/* <NavLink to={"/deleteProduto/" + produto._id}>
                         <Button size="small" color="primary">Deletar</Button>
-                      </NavLink>
+                      </NavLink> */}
+                      <DeleteProduto id={produto._id} />
                     </div>
                   </div>
                 </CardActions>

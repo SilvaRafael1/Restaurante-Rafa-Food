@@ -26,11 +26,7 @@ export default {
     },
 
     async delete(req, res) {
-        const produto = await ProdutoModel.findById(req.params.id);
-        if (!produto) {
-            res.send("Produto não encontrado")
-        }
-        await ProdutoModel.deleteOne(produto)
+        const produto = await ProdutoModel.findByIdAndDelete(req.params.id);
         res.send("Produto excluído")
     },
 
