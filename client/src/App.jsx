@@ -1,17 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { AppBar, Toolbar, Typography } from "@mui/material"
+import { BrowserRouter } from "react-router-dom"
+import { AppBar, Toolbar } from "@mui/material"
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "./theme/CreateTheme";
-import NavBar from "./components/NavBar"
-
-// Components
-import GetProdutos from "./components/GetProdutos"
-import CreateProduto from "./components/CreateProduto";
-import UpdateProduto from "./components/UpdateProduto";
-import DeleteProduto from "./components/DeleteProduto";
-import GetPedidos from "./components/GetPedidos";
-import GetRandom from "./components/GetRandom";
-import CreatePedido from "./components/CreatePedido";
+import NavBar from "./components/NavBar";
+import NavBarLogin from "./components/NavBarLogin";
+import IndexRoutes from "./routes/Index";
+import { AuthProvider } from "../contexts/Auth";
 
 function App() {
   return (
@@ -20,24 +14,18 @@ function App() {
         <ThemeProvider theme={DefaultTheme}>
           <AppBar color="primary" position="static">
             <Toolbar>
-              <Typography variant="h4" color="inherit">
-                Rafa's Food
-              </Typography>
-              <NavBar />
+              <div className="h-full w-full flex flex-row items-center content-center justify-between">
+                <NavBar />
+                <NavBarLogin />
+              </div>
             </Toolbar>
           </AppBar>
         </ThemeProvider>
 
         <div>
-          <Routes>
-            <Route exact path="/" Component={GetProdutos} />
-            <Route path="/createProduto" Component={CreateProduto} />
-            <Route path="/updateProduto/:id" Component={UpdateProduto} />
-            <Route path="/deleteProduto/:id" Component={DeleteProduto} />
-            <Route path="/getPedidos" Component={GetPedidos} />
-            <Route path="/produtos/random" Component={GetRandom} />
-            <Route path="/createPedido" Component={CreatePedido} />
-          </Routes>
+          <AuthProvider>
+            <IndexRoutes />
+          </AuthProvider>
         </div>
       </div>
     </BrowserRouter>
