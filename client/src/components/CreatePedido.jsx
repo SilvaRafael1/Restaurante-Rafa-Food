@@ -3,11 +3,12 @@ import * as Yup from "yup"
 import client from "../api/Api"
 import { Typography } from "@mui/material"
 import "../css/Form.css"
-import { useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 
 const CreatePedido = () => {
   let location = useLocation();
+  const navigate = useNavigate();
   const produtos = location.state.produtos
 
   if(produtos.length === 0) {
@@ -18,8 +19,7 @@ const CreatePedido = () => {
 
   const handleSubmit = (data) => client.post("/pedidos", data).then(() => {
     console.log("Pedido criado com sucesso: ", data);
-    alert("Pedido criado com sucesso! Para mais detalhes consulte o log")
-    window.location.href = "http://localhost:5173/getPedidos";
+    navigate("/getPedidos");
   })
 
   const validationSchema = Yup.object().shape({

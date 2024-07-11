@@ -1,4 +1,4 @@
-import ProdutoModel from "../models_mongo/ProdutoModel.js";
+import ProdutoModel from "../models/ProdutoModel.js";
 
 export default {
     async index(req, res) {

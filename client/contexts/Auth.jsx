@@ -5,15 +5,18 @@ const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  async function Login() {
-    const response = await api.post("/login", {
-      email: "rafael.silva@tacchini.com.br",
-      password: "Rafael@100"
-    })
-    console.log(response.data.accessToken)
+  async function Login(data) {
+    const response = await api.post("/login", data);
+
+    if(response.data == "Conta não encontrada, favor realizar cadastro!") {
+      return "Não autorizado"
+    }
+    
+    if(response.data == "Senha incorreta") {
+      return "Senha incorreta"
+    }
+
     setUser(response.data.user);
-    // api.defaults.headers.Authorization = `Bearer ${response.data.accessToken}`
-    api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`
   }
   return (
     <AuthContext.Provider value={{ signed: Boolean(user), user, Login }}>

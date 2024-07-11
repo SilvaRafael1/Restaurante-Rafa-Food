@@ -11,22 +11,22 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <ThemeProvider theme={DefaultTheme}>
-          <AppBar color="primary" position="static">
-            <Toolbar>
-              <div className="h-full w-full flex flex-row items-center content-center justify-between">
-                <NavBar />
-                <NavBarLogin />
-              </div>
-            </Toolbar>
-          </AppBar>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider theme={DefaultTheme}>
+            <AppBar color="primary" position="static">
+              <Toolbar>
+                <div className="h-full w-full flex flex-row items-center content-center justify-between">
+                  <NavBar />
+                  <NavBarLogin />
+                </div>
+              </Toolbar>
+            </AppBar>
+          </ThemeProvider>
 
-        <div>
-          <AuthProvider>
-            <IndexRoutes />
-          </AuthProvider>
-        </div>
+          <div>
+              <IndexRoutes />
+          </div>
+        </AuthProvider>
       </div>
     </BrowserRouter>
   )

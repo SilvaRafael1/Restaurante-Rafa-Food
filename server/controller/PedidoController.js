@@ -1,4 +1,4 @@
-import PedidoModel from "../models_mongo/PedidoModel.js"
+import PedidoModel from "../models/PedidoModel.js"
 
 export default {
   async index(req, res) {

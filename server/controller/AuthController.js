@@ -26,7 +26,7 @@ export default {
       })
   
       if(findUser) {
-        return res.status(400).send("Conta já cadastrada, favor realizar login!")
+        return res.send("Conta já cadastrada, favor realizar login!")
       } 
       
       const user = await User.create({
@@ -53,7 +53,7 @@ export default {
     })
 
     if(!findUser) {
-      return res.status(404).send("Conta não encontrada, favor realizar cadastro!")
+      return res.send("Conta não encontrada, favor realizar cadastro!")
     } 
 
     const booleanPassword = await bcrypt.compare(password, findUser.dataValues.password)
