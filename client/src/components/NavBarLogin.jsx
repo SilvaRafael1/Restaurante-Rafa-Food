@@ -11,8 +11,13 @@ import {
   Tooltip, 
   IconButton, 
   Avatar, 
-  Button
+  Button,
+  Menu,
+  MenuItem,
+  ListItemIcon,
 } from "@mui/material";
+import { Logout, Add } from '@mui/icons-material';
+import { NavLink } from "react-router-dom";
 
 export default function NavBarLogin() {
   const context = useContext(AuthContext);
@@ -21,6 +26,14 @@ export default function NavBarLogin() {
   const [loginInvalido, setLoginInvalido] = useState(false);
   const [contaCadastrada, setContaCadastrada] = useState(false);
   const [senhaIncorreta, setSenhaIncorreta] = useState(false);
+
+  const handleAdmin = () => {
+    if (context.user.role == "admin") {
+      return true
+    }
+    
+    return false
+  }
 
   const handleLoginDialogOpen = () => {
     setLoginDialogOpen(true);
@@ -47,6 +60,15 @@ export default function NavBarLogin() {
     setRegisterDialogOpen(false)
     setLoginDialogOpen(true)
   }
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   function stringToColor(string) {
     let hash = 0;
@@ -79,7 +101,7 @@ export default function NavBarLogin() {
     <div className="min-w-[185px] flex justify-end">
       <Tooltip title="Conta">
         {context.signed ? (
-          <IconButton onClick={() => {}} sx={{ p: 0 }}>
+          <IconButton onClick={handleMenuClick} sx={{ p: 0 }}>
             <Avatar {...stringAvatar(context.user.name)} />
           </IconButton>
         ) : (
@@ -231,6 +253,38 @@ export default function NavBarLogin() {
           <Button type="submit" variant="contained">Cadastrar-se</Button>
         </DialogActions>
       </Dialog>
+
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleMenuClose}
+        onClick={handleMenuClose}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        {context.signed ? (
+          handleAdmin() ? (
+            <MenuItem>
+              <NavLink to={"/createProduto"} className="nav-link flex items-center">
+                <ListItemIcon>
+                  <Add fontSize="small" />
+                </ListItemIcon>
+                Criar Produto
+              </NavLink>
+            </MenuItem>
+          ) : ""
+        ) : ""}
+        
+        <MenuItem onClick={() => {
+          window.location.href = "/"
+        }}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Sair
+        </MenuItem>
+      </Menu>
     </div>
   )
 }

@@ -42,14 +42,6 @@ function NavBar() {
                   </NavLink>
                 </Typography>
               </ListItemText>
-              <ListItemText inset>
-                <Typography color="inherit" variant="h6">
-                  <NavLink to={"/createProduto"} className="nav-link flex items-center">
-                    <Add />
-                    Criar Produto
-                  </NavLink>
-                </Typography>
-              </ListItemText>
             </>
           ) : (<></>)}
         </ListItem>

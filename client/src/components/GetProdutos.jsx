@@ -1,10 +1,11 @@
 import { Grid, Card, CardContent, CardMedia, Button, Typography, CardActions, Fab } from "@mui/material";
 import { ShoppingBag } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "../theme/CreateTheme";
 import client from "../api/Api";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../contexts/Auth";
 import DeleteProduto from "./DeleteProduto";
 
 const GetProdutos = () => {
@@ -28,6 +29,15 @@ const GetProdutos = () => {
   useEffect(() => {
     listProdutos()
   }, [])
+
+  const context = useContext(AuthContext);
+  const handleAdmin = () => {
+    if (context.user.role == "admin") {
+      return true
+    }
+    
+    return false
+  }
 
   return (
     <ThemeProvider theme={DefaultTheme}>
@@ -68,15 +78,14 @@ const GetProdutos = () => {
                         Adicionar
                       </Button>
                     </div>
-                    <div>
-                      <NavLink to={"/updateProduto/" + produto._id}>
-                        <Button size="small" color="primary">Editar</Button>
-                      </NavLink>
-                      {/* <NavLink to={"/deleteProduto/" + produto._id}>
-                        <Button size="small" color="primary">Deletar</Button>
-                      </NavLink> */}
-                      <DeleteProduto id={produto._id} />
-                    </div>
+                    {handleAdmin() ? (
+                      <div>
+                        <NavLink to={"/updateProduto/" + produto._id}>
+                          <Button size="small" color="primary">Editar</Button>
+                        </NavLink>
+                        <DeleteProduto id={produto._id} />
+                      </div>
+                    ) : ""}
                   </div>
                 </CardActions>
               </Card>

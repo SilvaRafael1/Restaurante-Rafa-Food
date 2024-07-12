@@ -60,7 +60,11 @@ export default {
 
     if(booleanPassword) {
       const accessToken = jwt.sign({ email: findUser.dataValues.email }, accessTokenSecret, { expiresIn: '2m' })
-      const user = { name: findUser.dataValues.name, email: findUser.dataValues.email }
+      const user = { 
+        name: findUser.dataValues.name, 
+        email: findUser.dataValues.email, 
+        role: findUser.dataValues.role 
+      }
       return res.json({
         accessToken, user
       })
