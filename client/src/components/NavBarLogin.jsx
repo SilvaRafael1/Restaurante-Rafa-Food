@@ -16,11 +16,12 @@ import {
   MenuItem,
   ListItemIcon,
 } from "@mui/material";
-import { Logout, Add } from '@mui/icons-material';
-import { NavLink } from "react-router-dom";
+import { Logout, Add, MapsHomeWork } from '@mui/icons-material';
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function NavBarLogin() {
   const context = useContext(AuthContext);
+  const navigate = useNavigate()
   const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
   const [loginInvalido, setLoginInvalido] = useState(false);
@@ -276,6 +277,14 @@ export default function NavBarLogin() {
           ) : ""
         ) : ""}
         
+        <MenuItem onClick={() => {
+          navigate("/enderecos");
+        }}>
+          <ListItemIcon>
+            <MapsHomeWork fontSize="small" />
+          </ListItemIcon>
+          Endereços
+        </MenuItem>
         <MenuItem onClick={() => {
           window.location.href = "/"
         }}>

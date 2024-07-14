@@ -2,6 +2,7 @@ import express from "express"
 import ProdutoController from "../controller/ProdutoController.js"
 import PedidoController from "../controller/PedidoController.js"
 import AuthController from "../controller/AuthController.js"
+import EnderecoController from "../controller/EnderecoController.js"
 
 const router = express.Router()
 
@@ -24,5 +25,11 @@ router.post("/pedidos", PedidoController.create)
 router.get("/login", AuthController.users)
 router.post("/login", AuthController.login)
 router.post("/register", AuthController.create)
+
+// Enderecos
+router.get("/enderecos", EnderecoController.index)
+router.post("/enderecos", EnderecoController.indexById)
+router.post("/enderecos/new", EnderecoController.create)
+router.delete("/enderecos/:id", EnderecoController.delete)
 
 export default router;

@@ -8,6 +8,7 @@ import DeleteProduto from "../components/DeleteProduto";
 import GetPedidos from "../components/GetPedidos";
 import GetRandom from "../components/GetRandom";
 import CreatePedido from "../components/CreatePedido";
+import Enderecos from "../components/Enderecos"
 
 export default function SignedRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function SignedRoutes() {
       <Route path="/getPedidos" Component={GetPedidos} />
       <Route path="/produtos/random" Component={GetRandom} />
       <Route path="/createPedido" Component={CreatePedido} />
+      <Route path="/enderecos" Component={Enderecos} />
     </Routes>
   )
 }

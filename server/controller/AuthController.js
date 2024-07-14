@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import User from "../models/user.js"
+import Endereco from "../models/endereco.js"
 
 const accessTokenSecret = "restauranteRafael"
 
@@ -61,12 +62,26 @@ export default {
     if(booleanPassword) {
       const accessToken = jwt.sign({ email: findUser.dataValues.email }, accessTokenSecret, { expiresIn: '2m' })
       const user = { 
+        id: findUser.dataValues.id,
         name: findUser.dataValues.name, 
         email: findUser.dataValues.email, 
         role: findUser.dataValues.role 
       }
+
+      const enderecos = await Endereco.findAll({
+        where: {
+          userId: findUser.dataValues.id
+        }
+      })
+
       return res.json({
-        accessToken, user
+        accessToken, user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          enderecos
+        }
       })
     } else {
       return res.send("Senha incorreta")

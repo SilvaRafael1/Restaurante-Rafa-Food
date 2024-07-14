@@ -1,38 +1,16 @@
-// import client from '../api/Api'
-// import { useParams } from 'react-router-dom'
-
-// const DeleteProduto = () => {
-//     const { id } = useParams()
-    
-//     const handleDelete = async () => {
-//       try {
-//         await client.delete(`/produtos/${id}`)
-//         console.log(`Livro com o ID ${id} deletado com sucesso!`)
-//         alert(`Livro com o ID ${id} deletado com sucesso!`)
-//         window.location.href = "http://127.0.0.1:5173";
-//       } catch (err) {
-//           console.error('Erro ao deletar livro: ', err)
-//       }
-//     }
-
-//   return (
-//     handleDelete()
-//   )
-// }
-
-// export default DeleteProduto
-
+import { useNavigate } from "react-router-dom";
 import client from "../api/Api";
 import { Button } from "@mui/material";
 
 function DeleteProduto({ id }) {
+    const navigate = useNavigate();
     
     const handleDelete = async () => {
         try {
             await client.delete(`/produtos/${id}`)
             console.log(`Produto com o ID ${id} deletado com sucesso!`)
             alert(`Produto com o ID ${id} deletado com sucesso!`)
-            window.location.href = "http://localhost:5173";
+            navigate("/");
         } catch (err) {
             console.error('Erro ao deletar produto: ', err)
         }
